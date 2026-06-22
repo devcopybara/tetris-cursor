@@ -1,0 +1,11 @@
+# OS / 에디터
+.DS_Store
+Thumbs.db
+*.log
+
+# Cursor IDE (게임 배포에 불필요)
+.cursor/
+
+# 로컬 에셋·캐시
+assets/
+node_modules/
