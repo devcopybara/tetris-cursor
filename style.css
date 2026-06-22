@@ -1,0 +1,196 @@
+/* 기본 레이아웃 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #1a1a2e;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  padding: 1.5rem;
+}
+
+.game-title {
+  margin: 0 0 1.5rem;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.game-layout {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 게임 보드 */
+.board-section {
+  position: relative;
+  background: #16213e;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.game-over {
+  position: absolute;
+  inset: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 15, 26, 0.88);
+  border-radius: 4px;
+  z-index: 1;
+  text-align: center;
+}
+
+.game-over.hidden {
+  display: none;
+}
+
+.game-over-title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #f00000;
+}
+
+.game-over-message {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.board {
+  --cell-size: 30px;
+  --cols: 10;
+  --rows: 20;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--cell-size));
+  grid-template-rows: repeat(var(--rows), var(--cell-size));
+  width: calc(var(--cols) * var(--cell-size));
+  height: calc(var(--rows) * var(--cell-size));
+  background: #0f0f1a;
+  border: 2px solid #4a4a6a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+}
+
+/* 테트로미노 색상 */
+.cell.piece-i { background: #00f0f0; }
+.cell.piece-o { background: #f0f000; }
+.cell.piece-t { background: #a000f0; }
+.cell.piece-s { background: #00f000; }
+.cell.piece-z { background: #f00000; }
+.cell.piece-j { background: #0000f0; }
+.cell.piece-l { background: #f0a000; }
+
+/* 정보 패널 */
+.info-panel {
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.score-box h2,
+.controls-guide h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #a0a0c0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.score-value {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 버튼 */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.button-group button {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+#start-btn {
+  background: #4ecca3;
+  color: #1a1a2e;
+}
+
+#start-btn:hover {
+  background: #3db892;
+}
+
+#restart-btn {
+  background: #4a4a6a;
+  color: #eee;
+}
+
+#restart-btn:hover {
+  background: #5a5a7a;
+}
+
+.button-group button:active {
+  transform: scale(0.98);
+}
+
+/* 조작법 안내 */
+.controls-guide ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.controls-guide li {
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.controls-guide kbd {
+  display: inline-block;
+  min-width: 1.5rem;
+  padding: 0.15rem 0.4rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  background: #2a2a4a;
+  border: 1px solid #4a4a6a;
+  border-radius: 4px;
+  text-align: center;
+}
